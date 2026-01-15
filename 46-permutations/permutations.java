@@ -3,28 +3,26 @@ import java.util.*;
 public class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        boolean[] used = new boolean[nums.length];
-        solve(result, new ArrayList<>(), nums, used);
-        return result;
-    }
+        boolean[] visited = new boolean[nums.length];
 
-   public void solve(List<List<Integer>> result, List<Integer> temp, int[] nums, boolean[] used) {
+        solve(result, visited, nums, new ArrayList<>());
+        return result;
+    } 
+
+    public void solve(List<List<Integer>> result, boolean[] visited, int[] nums, List<Integer> temp) {
         if(temp.size() == nums.length) {
             result.add(new ArrayList<>(temp));
-            return;
         }
 
-
         for(int i=0; i<nums.length; i++) {
-            if(used[i]) continue;
+            if(visited[i]) continue;
 
-            temp.add(nums[i]); //take
-            used[i] = true;
-            solve(result, temp, nums, used); //explore
-
-            temp.remove(temp.size()-1); //undo and explore
-            used[i] = false;
-
+            temp.add(nums[i]); //add
+            visited[i] = true;
+            solve(result, visited, nums, temp); //explore
+            temp.remove(temp.size()-1); //undo
+            visited[i] = false;
+            //explore i=i+1
         }
     }
 }
