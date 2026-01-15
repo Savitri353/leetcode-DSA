@@ -17,7 +17,7 @@ class Solution {
         for(int i=0; i<nums.length; i++) {
             if(used[i]) continue;
 
-            if(i>0 && nums[i] == nums[i-1] && !used[i-1]) continue;
+          if(i>0 && nums[i] == nums[i-1] && !used[i-1]) continue;
 
             temp.add(nums[i]);
             used[i] = true;
@@ -29,3 +29,6 @@ class Solution {
         }
     }
 }
+
+//Duplicates only happen when we try to START a new branch with the same number.
+// Inside a branch, duplicates are safe.
