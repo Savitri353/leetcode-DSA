@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    class Pair {
+    class Pair{
         int height;
         TreeNode node;
 
@@ -23,31 +23,27 @@ class Solution {
             this.node = node;
         }
     }
+    
     public TreeNode lcaDeepestLeaves(TreeNode root) {
-        return dfs(root).node;
-    }
+       return solve(root).node;
+    }   
 
-    private Pair dfs(TreeNode root) {
+    public Pair solve(TreeNode root) {
         if(root == null) {
             return new Pair(-1, null);
         }
 
-        Pair left = dfs(root.left);
-        Pair right = dfs(root.right);
+        Pair left = solve(root.left);
+        Pair right = solve(root.right);
 
-        //if left subtree is deeper
-        if(left.height > right.height) {
+        if(left.height>right.height) {
             return new Pair(left.height+1, left.node);
-        }
-
-        //if right subtree is deeper
-        if(right.height>left.height) {
+        } else if(right.height>left.height) {
             return new Pair(right.height+1, right.node);
+        } else {
+            return new Pair(left.height+1, root);
         }
-
-        //if both sides are equal-> current node is LCA
-        return new Pair(left.height+1, root);
-    }
+    }   
 }      // Map<Integer, Integer> map = new HashMap<>();
         // int maxD = 0;
 //     public TreeNode lcaDeepestLeaves(TreeNode root) {
