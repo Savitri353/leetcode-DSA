@@ -11,25 +11,20 @@
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
        
-        if(root == null) {
-            return null;
-        }
+       if(root == null) {
+        return null;
+       }
 
-        if(p==root || q==root) {
-            return root;
-        }
+        //both nodes are smaller
+       if(p.val<root.val && q.val<root.val) {
+           return lowestCommonAncestor(root.left, p, q);
+       }
 
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p,q);
-
-        if(left != null && right != null) {
-            return root;
-        }
-
-        if(left!=null) {
-            return left;
-        }
-
-        return right;
+        // both nodes are greater
+      if(p.val>root.val && q.val>root.val) {
+           return lowestCommonAncestor(root.right, p, q);
+       }
+        //split happens here
+        return root;
     }
 }
