@@ -18,14 +18,11 @@ class Solution {
         List<Integer> list = new ArrayList<>();
         inOrderTrav(list,root);
 
-        // boolean isBst = true;
-        int prev = list.get(0);
-
         for(int i=1; i<list.size(); i++) {
-            if(list.get(i)<=prev) {
+            if(list.get(i)<=list.get(i-1)) {
                 return false;
             }
-            prev = list.get(i);
+           
         }
         return true;
     }
