@@ -14,9 +14,9 @@ class Solution {
             }
              
             if(leftSmall) {
-                s++;
+                s = mid+1;
             } else {
-                e--;
+                e = mid-1;
             }
         }
 
