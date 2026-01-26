@@ -1,22 +1,23 @@
 class Solution {
     public char findTheDifference(String s, String t) {
      
-        int[] freq1 = new int[26];
-        for(int i=0; i<t.length(); i++) {
-            freq1[t.charAt(i) -'a']++;
-        }
-         
-       for(int i=0; i<s.length(); i++) {
-            freq1[s.charAt(i)-'a']--;
+       int[] freq = new int[26];
+
+       for(int i=0; i<t.length(); i++) {
+            freq[t.charAt(i)-'a']++;
        }
- 
-       char c=' ';
+
+       for(int i=0; i<s.length(); i++) {
+           freq[s.charAt(i)-'a']--;
+       }
+
+        char c=' ';
        for(int i=0; i<26; i++) {
-            if(freq1[i] == 1) {
-            c=(char)(i+'a');
-            break;
+            if(freq[i] == 1) {
+                c = (char)(i+'a');
             }
-        }
+       }
+
        return c;
     }
 }
