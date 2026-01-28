@@ -27,13 +27,14 @@ class Solution {
         temp.add(root.val);
 
         if(root.left==null && root.right==null && targetSum == root.val) {
-            list.add(new ArrayList<>(temp));
+            list.add(new ArrayList<>(temp)); 
         }
 
         solve(list, temp, root.left, targetSum-root.val);
         solve(list, temp, root.right, targetSum-root.val);
 
-        //after exploring one valid path i need to bracktrack
-        temp.remove(temp.size()-1);
+         //after exploring one valid path i need to bracktrack
+           temp.remove(temp.size()-1);
+        
     }
 }
