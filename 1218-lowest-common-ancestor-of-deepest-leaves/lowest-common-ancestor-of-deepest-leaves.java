@@ -14,10 +14,9 @@
  * }
  */
 class Solution {
-    class Pair{
+    class Pair {
         int height;
         TreeNode node;
-
         Pair(int height, TreeNode node) {
             this.height = height;
             this.node = node;
@@ -25,25 +24,29 @@ class Solution {
     }
     
     public TreeNode lcaDeepestLeaves(TreeNode root) {
-       return solve(root).node;
+        return solve(root).node;
     }   
 
     public Pair solve(TreeNode root) {
-        if(root == null) {
-            return new Pair(-1, null);
-        }
+        if(root == null) return new Pair(-1, null);
+
 
         Pair left = solve(root.left);
         Pair right = solve(root.right);
 
+        //if left height is deeper then return that length with that node, this will be used for intermediate nodes
         if(left.height>right.height) {
             return new Pair(left.height+1, left.node);
-        } else if(right.height>left.height) {
-            return new Pair(right.height+1, right.node);
-        } else {
-            return new Pair(left.height+1, root);
         }
-    }   
+  //if right height is deeper then return that length with that node, this will be used for intermediate nodes
+        if(right.height>left.height) {
+            return new Pair(right.height+1, right.node);
+        }
+
+//if both height is same then root will be our deepest LCA
+        return new Pair(left.height+1, root);
+    }
+    
 }      // Map<Integer, Integer> map = new HashMap<>();
         // int maxD = 0;
 //     public TreeNode lcaDeepestLeaves(TreeNode root) {
