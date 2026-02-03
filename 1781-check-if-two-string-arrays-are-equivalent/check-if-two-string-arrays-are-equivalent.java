@@ -9,12 +9,13 @@ class Solution {
             return false;
         }
 
-        for(int i=0; i<str1.length(); i++) {
-            if(str1.charAt(i) != str2.charAt(i)) {
-                return false;
-            }
-        }
 
-        return true;
+        // for(int i=0; i<str1.length(); i++) {
+        //     if(str1.charAt(i) != str2.charAt(i)) {
+        //         return false;
+        //     }
+        // }
+
+        return str1.equals(str2);
     }
 }
