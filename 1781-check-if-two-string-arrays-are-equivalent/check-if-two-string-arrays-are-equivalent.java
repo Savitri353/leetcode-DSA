@@ -5,9 +5,9 @@ class Solution {
         String str1 = String.join("", word1);
         String str2 = String.join("", word2);
 
-        if(str1.length() != str2.length()) {
-            return false;
-        }
+        // if(str1.length() != str2.length()) {
+        //     return false;
+        // }
 
 
         // for(int i=0; i<str1.length(); i++) {
