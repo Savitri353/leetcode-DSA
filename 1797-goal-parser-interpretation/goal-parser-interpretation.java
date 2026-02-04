@@ -13,14 +13,9 @@ class Solution {
                 sb.append('o');
                 i = i+2;
             } else if(i+3 < s.length() && s.substring(i, i+4).equals("(al)")) {
-                sb.append("al");
-               
+                sb.append("al"); 
                 i =  i+4;
-               
-            } else {
-                sb.append(s.charAt(i));
-                i++;
-            }
+            } 
         }
         
         return sb.toString();
