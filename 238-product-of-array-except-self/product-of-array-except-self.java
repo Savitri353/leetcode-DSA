@@ -1,15 +1,15 @@
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        int[] ans = new int[nums.length]; 
+      int[] ans = new int[nums.length];
 
-        //first pass, calculation of prefix in ans
+        //first pass, calculation of prefix in ans array
         ans[0] = 1;
         for(int i=1; i<nums.length; i++) {
             ans[i] = ans[i-1]*nums[i-1];
             
         }
 
-        //second pass, multiply suffix product on the fly
+        //second pass, multipy suffix with prefix product
         int suffix = 1;
         for(int i=nums.length-1; i>=0; i--) {
             ans[i]*=suffix;
