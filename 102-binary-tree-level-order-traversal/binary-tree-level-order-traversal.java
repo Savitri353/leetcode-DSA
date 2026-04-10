@@ -33,7 +33,7 @@ class Solution {
 
                 if(curr.left != null) q.add(curr.left);
                 if(curr.right != null) q.add(curr.right);
-            }
+            }  
 
             ans.add(list);
         }
