@@ -29,7 +29,7 @@ class Solution {
 
         if(Math.abs(leftH-rightH) > 1) return -1;
 
-        return 1+Math.max(solve(root.left), solve(root.right));
+        return 1+Math.max(leftH, rightH);
     }   
 }
 //Height depends on children
