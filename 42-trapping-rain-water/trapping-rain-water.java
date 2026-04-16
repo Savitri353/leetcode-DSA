@@ -19,7 +19,7 @@ class Solution {
         int water=0;
         for(int i=0; i<n; i++) {
             
-            int  w = Math.min(maxLeft[i], maxRight[i]) - ht[i];
+            int w = Math.min(maxLeft[i], maxRight[i]) - ht[i];
             water += w;
         }
 
