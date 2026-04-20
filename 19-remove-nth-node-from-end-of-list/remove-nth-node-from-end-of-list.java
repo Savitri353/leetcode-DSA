@@ -30,7 +30,7 @@ class Solution {
        ListNode prev = head; 
        int prevIndex = size-n;
        int i=1;
-       while(i<prevIndex) {
+       while(i != prevIndex) {
             prev = prev.next;
             i++;
        }
