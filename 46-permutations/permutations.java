@@ -2,27 +2,32 @@ import java.util.*;
 
 public class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> list = new ArrayList<>();
+
         boolean[] visited = new boolean[nums.length];
 
-        solve(result, visited, nums, new ArrayList<>());
-        return result;
+        solve(list, new ArrayList<>(), visited, nums);
+        return list;
     } 
 
-    public void solve(List<List<Integer>> result, boolean[] visited, int[] nums, List<Integer> temp) {
+    public void solve(List<List<Integer>> list, List<Integer> temp, boolean[] visited, int[] nums) {
         if(temp.size() == nums.length) {
-            result.add(new ArrayList<>(temp));
+            list.add(new ArrayList<>(temp));
+            return;
         }
 
         for(int i=0; i<nums.length; i++) {
             if(visited[i]) continue;
 
-            temp.add(nums[i]); //add
+            temp.add(nums[i]);
             visited[i] = true;
-            solve(result, visited, nums, temp); //explore
-            temp.remove(temp.size()-1); //undo
+            solve(list, temp, visited, nums);
+            
+            temp.remove(temp.size()-1);
             visited[i] = false;
-            //explore i=i+1
         }
     }
+
 }
+
+//O(n × n!) time complexity
