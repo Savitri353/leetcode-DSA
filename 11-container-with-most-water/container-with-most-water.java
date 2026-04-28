@@ -1,30 +1,22 @@
 class Solution {
-    public int maxArea(int[] height) {
-        //idea over here, that is as width decreasing be greedy to find..
-        //max height by avoiding small height.
-       
-       //1.width 2.height 3.maxArea 4. decrese from which side
-      int n=height.length;
-      //two pointers
-      int i=0, j=n-1;
-      int maxA = 0;
+    public int maxArea(int[] h) {
+        
+        int i=0, j=h.length-1;
+        int maxA = 0;
 
-      while(i<j) {
-        int width = j-i;
-        int minHeight = Math.min(height[i], height[j]);
-        int area = width*minHeight;
-        maxA = Math.max(maxA, area);
+        while(i<j) {
+            int width = j-i;
+            int minH = Math.min(h[i], h[j]);
+            int area = minH*width;
+            maxA = Math.max(maxA, area);
 
-        if(height[i]<height[j]) { //If you move left: Width decreases, 
-            i++;                  // BUT the height might increase
-        } else {
-            j--;
+            if(h[i] < h[j]) {
+                i++;
+            } else {
+                j--;
+            }
         }
-      }
 
-      return maxA;
-    }
-
-}
-
-//since the water is limited by the shorter line, i use two pointers starting from both ends. At each step, i calculated the area and move the pointer with smaller height, becasue moving the taller one cant increase the area.this gives O(n) solution.
+        return maxA;
+    }       
+}    
