@@ -1,28 +1,30 @@
 class Solution {
     public int trap(int[] ht) {
-        int n= ht.length;
-        int[] maxLeft = new int[n];
-        int[] maxRight = new int[n];
+        int n = ht.length;
 
-        int leftM = 0;
+        int[] leftM = new int[n];
+        int[] rightM = new int[n];
+
+        //find the left M 
+        int leftMax=0;
         for(int i=0; i<n; i++) {
-            leftM = Math.max(leftM, ht[i]);
-            maxLeft[i] = leftM;
+            leftMax = Math.max(leftMax, ht[i]);
+            leftM[i] = leftMax;
         }
 
-        int rightM=0;
+        //find the RightM
+        int rightMax = 0;
         for(int i=n-1; i>=0; i--) {
-            rightM = Math.max(rightM, ht[i]);
-            maxRight[i] = rightM;
+            rightMax = Math.max(rightMax, ht[i]);
+            rightM[i] = rightMax;
         }
 
-        int water=0;
+        //calculate total water
+        int w=0;
         for(int i=0; i<n; i++) {
-            
-            int w = Math.min(maxLeft[i], maxRight[i]) - ht[i];
-            water += w;
+            w += (    Math.min(rightM[i], leftM[i])   - ht[i] );
         }
 
-        return water;
+        return w;
     }
 }
