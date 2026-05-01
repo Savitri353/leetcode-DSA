@@ -15,8 +15,8 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-       return solve(root) != -1;
-    }
+        return solve(root) != -1;
+    } 
 
     public int solve(TreeNode root) {
         if(root == null) return 0;
@@ -30,7 +30,7 @@ class Solution {
         if(Math.abs(leftH-rightH) > 1) return -1;
 
         return 1+Math.max(leftH, rightH);
-    }   
+    }
 }
 //Height depends on children
 
