@@ -1,38 +1,40 @@
 class Solution {
     public String minWindow(String s, String t) {
-        int n = s.length();
-        int m = t.length();
+        
+        int m = s.length();
+        int n = t.length();
 
-        if(n<m) return "";
+        if(m<n) return "";
 
-        //first store the frequency of characters of t
+        //store freq of t 
         int[] freq = new int[128];
         for(char c:t.toCharArray()) {
             freq[c]++;
         }
 
-        int l=0, r=0;
-        int minWindowS = Integer.MAX_VALUE;
-        int start=0; //to find substring
-        int requiredCount=m;
-
-        while(r<n) {
-            char ch = s.charAt(r);
-
+        int minL = Integer.MAX_VALUE;
+        int r=0, l=0;
+        int start = 0;
+        int requiredCount = n;
+        while(r<m) {
+            int ch = s.charAt(r);
             if(freq[ch] > 0) {
                 requiredCount--;
+               
             }
 
-            freq[ch]--;
+             freq[ch]--;
+             while(requiredCount == 0) {
 
-            //found one window so shrinking the window
-            while(requiredCount == 0) {
-                int currentWindowS = r-l+1;
+                //that means we found one ans
+                int currentWin = r-l+1;
 
-                if(minWindowS > currentWindowS) {
-                    minWindowS = currentWindowS;
+                if(currentWin < minL) {
                     start = l;
+                    minL = currentWin;
                 }
+
+                //srink window from left
 
                 freq[s.charAt(l)]++;
 
@@ -41,12 +43,12 @@ class Solution {
                 }
 
                 l++;
-            }
+             }
 
              r++;
         }
 
-       return minWindowS == Integer.MAX_VALUE?"":s.substring(start, start+minWindowS);
+        return minL == Integer.MAX_VALUE?"":s.substring(start, start+minL);
     }
 }
 
