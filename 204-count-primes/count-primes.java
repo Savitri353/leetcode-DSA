@@ -1,27 +1,26 @@
 class Solution {
     public int countPrimes(int n) {
-        boolean[] isPrime = new boolean[n];
 
+        boolean[] prime = new boolean[n];
+
+        //intitally say all the numbers are prime numbers
         for(int i=2; i<n; i++) {
-            isPrime[i] = true;
+            prime[i] = true;
         }
 
-        for(int i=2; i*i<n; i++) {
-
-            if(isPrime[i] == true) {
-
+        //now apply seive 
+        for(int i=2; i*i<=n; i++) {
+            if(prime[i] == true) {
                 for(int j=2; j*i<n; j++) {
-                    if(isPrime[j*i] == false) continue;
-                    isPrime[j*i] = false;
+                    prime[j*i] = false;
                 }
             }
         }
 
         int count = 0;
+
         for(int i=2; i<n; i++) {
-            if(isPrime[i]) {
-                count++;
-            }
+            if(prime[i]) count++;
         }
 
         return count;
