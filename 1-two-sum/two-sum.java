@@ -3,14 +3,15 @@ class Solution {
        Map<Integer, Integer> mp = new HashMap<>();
 
        for(int i=0; i<nums.length; i++) {
-            int diff = target-nums[i];
-            if(mp.containsKey(diff)) {
-                return new int[] {mp.get(diff), i};
-            } else {
-                mp.put(nums[i], i);
-            }
+          int diff = target-nums[i];
+
+          if(mp.containsKey(diff)) {
+              return new int[]{mp.get(diff), i};
+          } else {
+            mp.put(nums[i], i);
+          }
        }
 
-       return new int[]{-1 -1};
+       return new int[]{-1, -1};
     }
 }
