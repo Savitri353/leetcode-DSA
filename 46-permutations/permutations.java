@@ -19,12 +19,13 @@ public class Solution {
         for(int i=0; i<nums.length; i++) {
             if(visited[i]) continue;
 
-            temp.add(nums[i]);
+            temp.add(nums[i]); //add
             visited[i] = true;
-            solve(list, temp, visited, nums);
+            solve(list, temp, visited, nums); //explore
             
-            temp.remove(temp.size()-1);
+            temp.remove(temp.size()-1); //undo
             visited[i] = false;
+            //explore i=i+1
         }
     }
 
