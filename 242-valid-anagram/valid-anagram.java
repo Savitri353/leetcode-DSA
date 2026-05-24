@@ -10,12 +10,14 @@ class Solution {
             freq[s.charAt(i)-'a']++;
         }
 
-        for(int i=0; i<t.length(); i++) {
+         for(int i=0; i<t.length(); i++) {
             freq[t.charAt(i)-'a']--;
         }
 
-        for(int i=0; i<freq.length; i++) {
-            if(freq[i] != 0) return false;
+         for(int i=0; i<freq.length; i++) {
+           if(freq[i] != 0) {
+            return false;
+           } 
         }
 
         return true;
