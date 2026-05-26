@@ -13,41 +13,40 @@
  *     }
  * }
  */
-class Solution {
-    class Pair {
-        int height;
-        TreeNode node;
-        Pair(int height, TreeNode node) {
-            this.height = height;
-            this.node = node;
-        }
-    }
-    
-    public TreeNode lcaDeepestLeaves(TreeNode root) {
-        return solve(root).node;
-    }   
+    class Solution {
+        class Pair {
+            TreeNode node;
+            int height;
 
-    public Pair solve(TreeNode root) {
-        if(root == null) return new Pair(-1, null);
-
-
-        Pair left = solve(root.left);
-        Pair right = solve(root.right);
-
-        //if left height is deeper then return that length with that node, this will be used for intermediate nodes
-        if(left.height>right.height) {
-            return new Pair(left.height+1, left.node);
-        }
-  //if right height is deeper then return that length with that node, this will be used for intermediate nodes
-        if(right.height>left.height) {
-            return new Pair(right.height+1, right.node);
+            Pair(TreeNode node, int height) {
+                this.node = node;
+                this.height = height;
+            }
         }
 
-//if both height is same then root will be our deepest LCA
-        return new Pair(left.height+1, root);
-    }
-    
-}      // Map<Integer, Integer> map = new HashMap<>();
+        public TreeNode lcaDeepestLeaves(TreeNode root) {
+            return solve(root).node;
+        }
+        public Pair solve(TreeNode root) {
+            if(root == null) {
+                return new Pair(null, -1);
+            }
+
+            Pair left = solve(root.left);
+            Pair right = solve(root.right);
+
+            if(left.height>right.height) {
+                return new Pair(left.node, left.height+1);
+            }
+
+            if(left.height<right.height) {
+                return new Pair(right.node, right.height+1);
+            }
+
+            return new Pair(root, left.height+1);
+        }
+    } 
+ // Map<Integer, Integer> map = new HashMap<>();
         // int maxD = 0;
 //     public TreeNode lcaDeepestLeaves(TreeNode root) {
 //         depth(root, 0);
