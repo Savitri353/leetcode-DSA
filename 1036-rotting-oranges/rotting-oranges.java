@@ -3,56 +3,60 @@
 class Solution {
     
     public int orangesRotting(int[][] grid) {
-        int n = grid.length;
-        int m = grid[0].length;
+        //1. find rotten and fresh , put rotten into queue
+        //2. level wise, remove elements from queue and make rotten in four direction for all rotten oranges at the same time
 
         Queue<int[]> q = new LinkedList<>();
+        int countFresh = 0;
+        int n=grid.length;
+        int m=grid[0].length;
 
-        int cntFresh = 0;
-
-        //step 1: add 2's position in queue. i.e starting point
         for(int i=0; i<n; i++) {
             for(int j=0; j<m; j++) {
-                if(grid[i][j]==2) {
-                    q.add(new int[]{i,j});
-                    
+                if(grid[i][j] == 2) {
+                    q.add(new int[] {i, j});
                 } else if(grid[i][j] == 1){
-                    cntFresh++;
-
+                    countFresh++;
                 }
             }
         }
 
-        if(cntFresh == 0) return 0;
-        int minites=0;
-        int[][] directions = {{-1, 0}, {1,0}, {0,-1}, {0,1}};
+        //if there is no fresh oranges return 0 minutes
+        if(countFresh == 0) {
+            return 0;
+        }
 
-        
-        //step 2: now explore neighbours
-        while(!q.isEmpty()) {
-           int size = q.size();
+        //start rittening oranges in four directionaly
 
-            while(size-- >0) {
-                
-                int[] curr = q.poll();
-                int i = curr[0];
-                int j = curr[1];
+        int[][] directions = {{-1,0}, {0, 1}, {1, 0}, {0, -1}};
+        int minutes = 0;
 
-                for(int[] dir:directions) {
-                    int new_i = i+dir[0];
-                    int new_j = j+dir[1];
+        while(!q.isEmpty() && countFresh > 0) {
+            int size = q.size();
 
-                    if(new_i >=0 && new_j >=0 && new_i<n && new_j<m && grid[new_i][new_j] == 1) {
+            while(size>0) {
+
+                int[] currentPos = q.poll();
+                size--;
+
+                for(int[] direction: directions) {
+                    int new_i = currentPos[0] + direction[0];
+                    int new_j = currentPos[1] + direction[1];
+
+                    if(new_i>=0 && new_j>=0 && new_i<n && new_j<m && grid[new_i][new_j] == 1) {
                         grid[new_i][new_j] = 2;
-                        q.offer(new int[]{new_i, new_j});
-                        cntFresh--;
+                        q.add(new int[] {new_i, new_j});
+                        countFresh--;
                     }
                 }
 
             }
-            minites++;
-        } 
 
-        return cntFresh == 0 ? (minites-1):-1;
+            minutes++;
+        }
+
+
+        return countFresh == 0 ? minutes : -1;
+
     }
 }    
