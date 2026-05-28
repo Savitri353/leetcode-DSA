@@ -1,25 +1,27 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        String[] keypad = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-
         List<String> list = new ArrayList<>();
-        solve(list, keypad, digits, 0, new StringBuilder());
-        return list;
-    }
 
-    public void solve(List<String> list, String[] keypad, String digits, int idx, StringBuilder temp) {
+        String[] keys = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+        solve(list, keys, digits, new StringBuilder(), 0);
+        return list;
+    }   
+
+    public void solve(List<String> list, String[] keys, String digits, StringBuilder temp, int idx) {
         if(idx == digits.length()) {
             list.add(temp.toString());
             return;
         }
 
         int digit = digits.charAt(idx)-'0';
-        String letters = keypad[digit];
+        String letter = keys[digit];
 
-        for(char ch:letters.toCharArray()) {
-            temp.append(ch); // take
-            solve(list, keypad, digits, idx+1, temp); // explore
-            temp.deleteCharAt(temp.length()-1);
+        for(char ch:letter.toCharArray()) {
+            temp.append(ch); //add
+
+            solve(list, keys, digits, temp, idx+1); //explore
+            temp.deleteCharAt(temp.length()-1); //undo
         }
     }
 }
