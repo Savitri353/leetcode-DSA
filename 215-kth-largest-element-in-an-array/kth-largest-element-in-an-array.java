@@ -11,7 +11,7 @@ class Solution {
             }
         }
 
-        return q.remove();
+        return q.peek();
     }
 }      
       
