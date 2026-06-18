@@ -1,62 +1,59 @@
 
 
 class Solution {
-    
+
     public int orangesRotting(int[][] grid) {
-        //1. find rotten and fresh , put rotten into queue
-        //2. level wise, remove elements from queue and make rotten in four direction for all rotten oranges at the same time
+
+        int m = grid.length;
+        int n = grid[0].length;
 
         Queue<int[]> q = new LinkedList<>();
-        int countFresh = 0;
-        int n=grid.length;
-        int m=grid[0].length;
 
-        for(int i=0; i<n; i++) {
-            for(int j=0; j<m; j++) {
+        int freshCount = 0;
+
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
                 if(grid[i][j] == 2) {
                     q.add(new int[] {i, j});
-                } else if(grid[i][j] == 1){
-                    countFresh++;
+                } else if(grid[i][j] == 1) {
+                    freshCount++;
                 }
             }
         }
 
-        //if there is no fresh oranges return 0 minutes
-        if(countFresh == 0) {
+        if(freshCount == 0) {
             return 0;
         }
 
-        //start rittening oranges in four directionaly
+        int[][] dir = {{-1, 0}, {0, 1}, {1,0}, {0, -1}};
 
-        int[][] directions = {{-1,0}, {0, 1}, {1, 0}, {0, -1}};
         int minutes = 0;
 
-        while(!q.isEmpty() && countFresh > 0) {
+        while(!q.isEmpty() && freshCount > 0 ) {
             int size = q.size();
 
-            while(size>0) {
+            for(int i=1; i<=size; i++) {
+                int[] currunt = q.remove();
 
-                int[] currentPos = q.poll();
-                size--;
+                int cu_i = currunt[0];
+                int cu_j = currunt[1];
 
-                for(int[] direction: directions) {
-                    int new_i = currentPos[0] + direction[0];
-                    int new_j = currentPos[1] + direction[1];
+                for(int[] d:dir) {
+                    int new_i = cu_i+d[0];
+                    int new_j = cu_j+d[1];
 
-                    if(new_i>=0 && new_j>=0 && new_i<n && new_j<m && grid[new_i][new_j] == 1) {
+                    if(new_i>=0 && new_i<m && new_j>=0 && new_j<n && grid[new_i][new_j] == 1) {
                         grid[new_i][new_j] = 2;
                         q.add(new int[] {new_i, new_j});
-                        countFresh--;
+                        freshCount--;
                     }
                 }
-
             }
 
-            minutes++;
+              minutes++;
         }
 
-
-        return countFresh == 0 ? minutes : -1;
+        return freshCount == 0 ? minutes: -1;
 
     }
-}    
+}       
