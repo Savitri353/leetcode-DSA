@@ -1,9 +1,9 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        int i=0, j=s.length()-1;
+      int i=0, j=s.length()-1;
 
-        while(i<=j) {
-            //skip invalid characters or spaces
+       while(i<=j) {
+        
             while(i<=j && !Character.isLetterOrDigit(s.charAt(i))) i++;
             while(i<=j && !Character.isLetterOrDigit(s.charAt(j))) j--;
 
@@ -13,8 +13,9 @@ class Solution {
 
             i++;
             j--;
-        }
+       }
 
-        return true;
-    }
+    return true;
+}
+
 }
