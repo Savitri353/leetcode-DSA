@@ -9,13 +9,13 @@ class Solution {
         List<Integer> list = new ArrayList<>();
 
         for(int i=0; i<=s.length()-k; i++) {
-            String sSub = s.substring(i, i+k);
+            String sub = s.substring(i, i+k);
             
-            char[] asSub = sSub.toCharArray();
+            char[] subArr = sub.toCharArray();
 
-            Arrays.sort(asSub);
+            Arrays.sort(subArr);
 
-            String s2 = new String(asSub);
+            String s2 = new String(subArr);
 
             if(s2.equals(p1)) {
                 list.add(i);
