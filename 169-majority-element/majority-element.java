@@ -1,29 +1,22 @@
 class Solution {
     public int majorityElement(int[] nums) {
 
-        // int n = nums.length;
-
-        //  Arrays.sort(nums);
-
-        //  return nums[n/2];
-
-
         int candidate = 0;
         int count = 0;
 
-        for(int num:nums) {
-
+        for(int i=0; i<nums.length; i++) {
             if(count == 0) {
-                candidate = num; //assign the num
+                candidate = nums[i];
             }
 
-            if(candidate == num) {  // increase the count
+            if(candidate == nums[i]) {
                 count++;
             } else {
                 count--;
             }
+
         }
 
         return candidate;
     }
-}      
+}    
