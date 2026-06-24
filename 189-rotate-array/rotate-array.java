@@ -20,3 +20,9 @@ class Solution {
         }
     }
 }       
+
+// To rotate right by k:
+
+// 1️⃣ Reverse the entire array
+// 2️⃣ Reverse the first k elements
+// 3️⃣ Reverse the remaining elements
