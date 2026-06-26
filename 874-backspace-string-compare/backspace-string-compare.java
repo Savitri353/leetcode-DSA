@@ -10,10 +10,10 @@ class Solution {
         for(int i=0; i<n; i++) {
             char c=s.charAt(i);
 
-            if(c == '#' && !st.isEmpty()) {
-                st.pop();
-            } else if(st.isEmpty() && c == '#') {
-                continue;
+            if(c == '#') {
+                if(!st.isEmpty()) {
+                     st.pop();
+                }      
             } else {
                 st.push(c);
             }
@@ -22,10 +22,11 @@ class Solution {
         for(int i=0; i<m; i++) {
             char c=t.charAt(i);
 
-            if(c == '#' && !st2.isEmpty()) {
-                st2.pop();
-            } else if(st2.isEmpty() && c == '#') {
-                continue;
+            if(c == '#') {
+                if(!st2.isEmpty()) {
+                    st2.pop();
+                }
+                
             } else {
                 st2.push(c);
             }
