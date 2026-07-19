@@ -7,14 +7,14 @@ class Solution {
         String second = v[v.length-1];
 
         int i=0, j=0;
-        StringBuilder sb = new StringBuilder();
+      
         while(i<first.length()  && j<second.length() && first.charAt(i) == second.charAt(i)) {
-            sb.append(first.charAt(i));
+            
             i++;
             j++;
            
         }
 
-        return sb.toString();
+        return first.substring(0,i);
     }
 }      
