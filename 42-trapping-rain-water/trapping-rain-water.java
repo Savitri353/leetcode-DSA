@@ -13,7 +13,7 @@ class Solution {
            lMax[i] = leftM;
         }
 
-        //2 find right left max for each bar
+        //2 find right max for each bar
 
         int rightM = 0;
         int[] rMax = new int[n];
