@@ -1,28 +1,32 @@
 class Solution {
     public int trap(int[] ht) {
+        
         int n = ht.length;
 
-        int[] leftM = new int[n];
-        int[] rightM = new int[n];
+        //1. find left max for each bar
 
-        //find the left M 
-        int leftMax=0;
+        int[] lMax = new int[n];
+        int leftM = 0;
+
         for(int i=0; i<n; i++) {
-            leftMax = Math.max(leftMax, ht[i]);
-            leftM[i] = leftMax;
+           leftM  = Math.max(ht[i], leftM);
+           lMax[i] = leftM;
         }
 
-        //find the RightM
-        int rightMax = 0;
+        //2 find right left max for each bar
+
+        int rightM = 0;
+        int[] rMax = new int[n];
+
         for(int i=n-1; i>=0; i--) {
-            rightMax = Math.max(rightMax, ht[i]);
-            rightM[i] = rightMax;
+            rightM = Math.max(rightM, ht[i]);
+            rMax[i] = rightM;
         }
 
-        //calculate total water
         int w=0;
         for(int i=0; i<n; i++) {
-            w += (    Math.min(rightM[i], leftM[i])   - ht[i] );
+            int water = Math.min(lMax[i], rMax[i]) - ht[i];
+            w+= water;
         }
 
         return w;
