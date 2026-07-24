@@ -11,12 +11,10 @@ class Solution {
                 min = Math.min(min, nums[i]);
                 i=mid+1;
             } else {
-                if(nums[mid] <= nums[j]) {
-                    min = Math.min(min, nums[j]);
-                    j=mid-1;
-                }
+                min = Math.min(min, nums[j]);
+                j=mid-1;     
             }
-        
+
         }
 
         return min;
