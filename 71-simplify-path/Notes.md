@@ -1,1 +1,1 @@
-<h2>simplify-path Notes</h2><hr>[ Time taken: 1 hr 13 m 37 s ]
+<h2>simplify-path Notes</h2><hr>[ Time taken: 11m 43s ]
