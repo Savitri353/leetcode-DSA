@@ -3,17 +3,18 @@ class Solution {
         
         HashMap<String, ArrayList<String>> mp = new HashMap<>();
 
-        for(int i=0; i<strs.length; i++) {
+        for(String s:strs) {
 
-            char[] curr = strs[i].toCharArray();
-            Arrays.sort(curr);
-            String key = new String(curr);
+            char[] arr = s.toCharArray();
+            Arrays.sort(arr);
 
-             if(!mp.containsKey(key)) {
+            String key = new String(arr);
+
+            if(!mp.containsKey(key)) {
                 mp.put(key, new ArrayList<>());
-             }
+            }
 
-             mp.get(key).add(strs[i]);
+            mp.get(key).add(s);
         }
 
         return new ArrayList<>(mp.values());
