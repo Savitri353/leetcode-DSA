@@ -1,26 +1,22 @@
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        //sliding window
-        int n=nums.length-1;
-        int i=0, j=0;
-
-        int sum=0;
+        
         int minL = Integer.MAX_VALUE;
-        while(j<=n) {
-            sum+=nums[j];
+
+        int l=0;
+        int sum  = 0;
+
+        for(int r=0; r<nums.length; r++){
+
+            sum+=nums[r];
 
             while(sum>=target) {
-                minL = Math.min(minL, j-i+1);
-                sum-=nums[i];
-                i++;
+                minL = Math.min(minL, r-l+1);
+                sum-=nums[l];
+                l++;
             }
-
-            j++;
         }
 
-        return minL==Integer.MAX_VALUE?0:minL;
+        return minL == Integer.MAX_VALUE ? 0:minL;
     }
 }
-
-//Since all elements are positive, I used a sliding window to expand until the sum reaches the target and shrink it to find the minimum length
-//O(n)
