@@ -1,26 +1,28 @@
 class Solution {
     public int countSubstrings(String s) {
-       int count = 0;
+        
+        int count = 0;
 
-       for(int i=0; i<s.length(); i++) {
-           
-           count+=expandFromCenter(s, i, i);
+        for(int i=0; i<s.length(); i++) {
 
-           count+=expandFromCenter(s, i, i+1);
-       }
-
-       return count;
-    }
-
-    public int expandFromCenter(String s, int left, int right) {
-        int cnt = 0;
-
-        while(left>=0 && right<s.length() && s.charAt(left) == s.charAt(right)) {
-            cnt++;
-            left--;
-            right++;
+            count+=palindrom(s, i, i);
+            count+=palindrom(s, i, i+1);
         }
 
-        return cnt;
+        return count;
+    }
+
+    public int palindrom(String s, int i, int j) {
+
+        int count = 0;
+
+        while(i>=0 && j<s.length() && s.charAt(i) == s.charAt(j)) {
+
+            count++;
+            i--;
+            j++;
+        }
+
+        return count;
     }
 }
