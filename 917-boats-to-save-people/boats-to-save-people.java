@@ -7,29 +7,12 @@ class Solution {
         int boat = 0;
        while(i<=j) {
 
-            if(people[j] == limit || people[i] == limit) {
-                if(people[i] == limit) {
-                    boat++;
-                    i++;
-                }
+            if(people[i] + people[j] <= limit ) {
+                i++;    
+            }   
 
-                if(people[j] == limit) {
-                    boat++;
-                    j--;
-                }
-
-            } else if(people[i] + people[j] > limit) {
-                boat++;
-                j--;
-            } else if(people[i] + people[j] == limit) {
-                boat++;
-                i++;
-                j--;
-            } else {
-                boat++;
-                i++;
-                j--;
-            }
+            j--;
+            boat++;
        }
 
        return boat;
