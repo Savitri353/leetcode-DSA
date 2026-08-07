@@ -1,20 +1,24 @@
 class Solution {
-    public int[] twoSum(int[] n, int target) {
+    public int[] twoSum(int[] numbers, int target) {
+        
+        // int[] ans = new int[2];
 
-       int l=0, r=n.length-1;
+        int i=0;
+        int j=numbers.length-1;
 
-       while(l<r) {
-            int sum = n[l]+n[r];
+        while(i<j) {
+
+            int sum = numbers[i] + numbers[j];
 
             if(sum == target) {
-                return new int[] {l+1, r+1};
-            } else if(sum > target) {
-                r--;
+                return new int[]{i+1,j+1};
+            } else if(sum < target) {
+                i++;
             } else {
-                l++;
+                j--;
             }
-       }
+        }
 
-       return new int[] {0,0};
+        return new int[] {-1,-1};
     }
-}    
+}
