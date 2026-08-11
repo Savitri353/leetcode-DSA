@@ -1,27 +1,24 @@
 class Solution {
-    public int maxArea(int[] h) {
-
-        int minHeight = 0;
-        int maxWater = 0;
+    public int maxArea(int[] height) {
+        
         int i = 0;
-        int j = h.length-1;
+        int j = height.length-1;
 
-        while(i<=j) {
-
-            minHeight = Math.min(h[i], h[j]);
+        int maxW = 0;
+        while(i<j) {
             int width = j-i;
+            int h = Math.min(height[i], height[j]);
+            int currW = width*h;
 
-            maxWater = Math.max(maxWater, width*minHeight);
+            maxW = Math.max(maxW, currW);
 
-            if(h[i]>h[j]) {
-                j--;
-            } else {
+            if(height[i]<height[j]) {
                 i++;
+            } else {
+                j--;
             }
         }
 
-        return maxWater;
+        return maxW;
     }
-}    
-
-      
+}
