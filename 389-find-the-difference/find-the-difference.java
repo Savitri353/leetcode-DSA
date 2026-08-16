@@ -4,16 +4,21 @@ class Solution {
         int[] freq = new int[26];
 
         for(int i=0; i<s.length(); i++) {
-            freq[s.charAt(i) - 'a']++;
+
+            char c = s.charAt(i);
+            freq[c-'a']++;
         }
 
-        for(int i=0; i<t.length(); i++) {
-            freq[t.charAt(i) - 'a']--;
-            if(freq[t.charAt(i) - 'a'] == -1) {
-                return t.charAt(i);
+         for(int i=0; i<t.length(); i++) {
+
+            char c = t.charAt(i);
+            freq[c-'a']--;
+
+            if(freq[c-'a'] == -1) {
+                return c;
             }
         }
 
         return ' ';
     }
-}
+}    
