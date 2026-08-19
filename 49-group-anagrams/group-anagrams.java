@@ -6,6 +6,7 @@ class Solution {
         for(String s:strs) {
 
             char[] arr = s.toCharArray();
+
             Arrays.sort(arr);
 
             String key = new String(arr);
@@ -19,4 +20,4 @@ class Solution {
 
         return new ArrayList<>(mp.values());
     }
-}       
+}        
